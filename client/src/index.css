@@ -356,3 +356,48 @@
     background-position: 200% 0;
   }
 }
+
+/* Improved mobile menu interactions */
+@media (max-width: 767px) {
+  /* Larger touch targets for mobile navigation */
+  .mobile-menu button {
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  
+  /* Active states with better visual feedback */
+  .mobile-menu button:active {
+    transform: scale(0.97);
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  /* Ensure z-index is appropriate for mobile menu */
+  .mobile-menu {
+    z-index: 100;
+    position: relative;
+  }
+  
+  /* Add click feedback animation */
+  .mobile-menu button::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(59, 130, 246, 0.3) 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.8s;
+  }
+  
+  .mobile-menu button:active::after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+  }
+}
