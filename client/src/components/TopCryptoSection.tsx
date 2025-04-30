@@ -6,15 +6,15 @@ import { cryptoData } from '@/lib/cryptoData';
 export default function TopCryptoSection() {
   return (
     <section className="mb-12 fade-in">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Top Cryptocurrencies</h2>
-        <a href="#" className="text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 font-medium flex items-center">
+      <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 xs:mb-0">Top Cryptocurrencies</h2>
+        <a href="#" className="text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 font-medium flex items-center text-sm sm:text-base">
           View All
           <FaChevronRight className="ml-1 text-xs" />
         </a>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {cryptoData.map((crypto, index) => (
           <motion.div 
             key={crypto.id}

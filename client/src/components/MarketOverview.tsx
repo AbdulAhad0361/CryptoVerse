@@ -16,7 +16,7 @@ export default function MarketOverview() {
         <div className="mt-4 md:mt-0 flex flex-wrap gap-2">
           <div className="relative inline-block text-sm">
             <select 
-              className="block w-full pl-3 pr-10 py-2 rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-primary focus:border-primary appearance-none" 
+              className="block w-full pl-3 pr-10 py-2 text-xs sm:text-sm rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-primary focus:border-primary appearance-none" 
               value={timeframe}
               onChange={(e) => setTimeframe(e.target.value)}
             >
@@ -32,13 +32,13 @@ export default function MarketOverview() {
               </svg>
             </div>
           </div>
-          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-            <FaSyncAlt className="mr-2" /> Refresh
+          <button className="inline-flex items-center px-3 sm:px-4 py-2 border border-transparent text-xs sm:text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+            <FaSyncAlt className="mr-1 sm:mr-2" /> Refresh
           </button>
         </div>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Market Stat Card 1 */}
         <motion.div 
           className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 dark:shadow-md flex flex-col justify-between crypto-glow"

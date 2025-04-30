@@ -4,16 +4,16 @@ import styles from '@/styles/FooterSection.module.css';
 export default function FooterSection() {
   return (
     <footer className="bg-gray-100 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 mr-2 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center shadow-lg">
-                <FaChartLine className="text-white text-xl" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8">
+          <div className="col-span-2 sm:col-span-3 md:col-span-1">
+            <div className="flex items-center mb-3 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 mr-2 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center shadow-lg">
+                <FaChartLine className="text-white text-sm sm:text-xl" />
               </div>
               <span className={styles.logoText}>CryptoVerse</span>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">Experience the future of cryptocurrency tracking and analysis with our modern, responsive dashboard.</p>
+            <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm sm:text-base">Experience the future of cryptocurrency tracking and analysis with our modern, responsive dashboard.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-400" aria-label="Twitter">
                 <FaTwitter className="text-xl" />
