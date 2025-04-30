@@ -48,7 +48,10 @@ export default function Home() {
       
       <Navbar />
       
-      {/* Live price statistics bar */}
+      {/* Add empty space to account for fixed navbar */}
+      <div className="h-16"></div>
+      
+      {/* Live price statistics bar (now below navbar) */}
       <StatisticsBar />
       
       {/* Live notification component */}

@@ -62,7 +62,7 @@ export default function StatisticsBar() {
   }, []);
   
   return (
-    <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 overflow-hidden w-full">
       <div className="flex items-center max-w-full">
         {/* Global stats (fixed) */}
         <div className="flex items-center space-x-6 mr-6 pr-6 border-r border-gray-200 dark:border-gray-700 shrink-0">

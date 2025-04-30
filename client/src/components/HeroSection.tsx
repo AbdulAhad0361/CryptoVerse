@@ -57,7 +57,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden pt-8">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 to-white dark:from-gray-900 dark:to-gray-800 opacity-50 -z-10"></div>
       
