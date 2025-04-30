@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { FaArrowRight, FaInfoCircle } from 'react-icons/fa';
 import styles from '@/styles/ThreeJSFeature.module.css';
 import ModelSelector from './ThreeJS/ModelSelector';
@@ -64,25 +64,11 @@ const cryptoInfo = {
 
 export default function ThreeJSFeature() {
   const [activeModel, setActiveModel] = useState('bitcoin');
-  const [showInfo, setShowInfo] = useState(false);
   
   // Update active model when ModelSelector changes models
   const handleModelChange = (modelName: string) => {
     setActiveModel(modelName);
-    // Briefly hide info card when switching models
-    setShowInfo(false);
-    // Show info card after a short delay
-    setTimeout(() => setShowInfo(true), 500);
   };
-  
-  // Show info card by default when component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowInfo(true);
-    }, 1500);
-    
-    return () => clearTimeout(timer);
-  }, []);
   
   // Get current crypto info
   const currentInfo = cryptoInfo[activeModel as keyof typeof cryptoInfo] || cryptoInfo.bitcoin;
@@ -161,30 +147,20 @@ export default function ThreeJSFeature() {
           <div className="canvas-container w-full h-full border-2 sm:border-4 border-white/30 dark:border-gray-700/30 bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-xl overflow-hidden relative">
             <ModelSelector onModelChange={handleModelChange} />
             
-            {/* Info card for current crypto - with fixed positioning to prevent layout shifts */}
-            <div className="absolute left-4 right-4 bottom-20 z-10" style={{ minHeight: '110px' }}>
-              <AnimatePresence mode="wait">
-                <motion.div 
-                  key={activeModel} // This ensures different content for each model
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg p-3 text-left"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: showInfo ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h4 className="font-bold text-sm text-gray-900 dark:text-white mb-1">{currentInfo.title}</h4>
-                  <p className="text-xs text-gray-700 dark:text-gray-300 mb-2">{currentInfo.description}</p>
-                  <div className="flex flex-wrap gap-1">
-                    {currentInfo.features.map((feature, index) => (
-                      <span 
-                        key={index} 
-                        className="text-xs px-2 py-0.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary-800 dark:text-primary-200"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+            {/* Info card with static container and fixed height */}
+            <div className="absolute left-4 right-4 bottom-20 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg p-3 text-left" style={{ height: '130px' }}>
+              <h4 className="font-bold text-sm text-gray-900 dark:text-white mb-1">{currentInfo.title}</h4>
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-2 line-clamp-3">{currentInfo.description}</p>
+              <div className="flex flex-wrap gap-1">
+                {currentInfo.features.map((feature, index) => (
+                  <span 
+                    key={index} 
+                    className="text-xs px-2 py-0.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary-800 dark:text-primary-200"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>

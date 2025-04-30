@@ -100,25 +100,10 @@ export default function ModelSelector({ onModelChange }: ModelSelectorProps) {
         {/* Active 3D model */}
         {renderModel()}
         
-        {/* Model name label - using AnimatePresence to handle transitions */}
-        <div className="absolute top-4 left-0 right-0 text-center">
-          <div className="relative inline-block">
-            {/* First, render a persistent but invisible placeholder to maintain consistent height */}
-            <span className="px-3 py-1 rounded-lg invisible">
-              {getModelNameAndSymbol()}
-            </span>
-            
-            {/* Then render the actual visible content on top with a fade effect */}
-            <div className="absolute inset-0 flex justify-center items-center">
-              <motion.span 
-                className="px-3 py-1 rounded-lg bg-white/30 dark:bg-black/30 backdrop-blur-sm text-gray-800 dark:text-white font-semibold text-sm"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                {getModelNameAndSymbol()}
-              </motion.span>
-            </div>
+        {/* Static model label container with fixed height */}
+        <div className="absolute top-4 left-0 right-0 flex justify-center" style={{ height: '28px' }}>
+          <div className="px-3 py-1 rounded-lg bg-white/30 dark:bg-black/30 backdrop-blur-sm text-gray-800 dark:text-white font-semibold text-sm">
+            {getModelNameAndSymbol()}
           </div>
         </div>
         
