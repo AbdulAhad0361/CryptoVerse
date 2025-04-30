@@ -1,0 +1,29 @@
+.statsCard {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 dark:shadow-md flex flex-col justify-between crypto-glow;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.statsCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.statValue {
+  @apply text-2xl font-bold mt-1 text-gray-900 dark:text-white;
+}
+
+.statLabel {
+  @apply text-gray-500 dark:text-gray-400 text-sm;
+}
+
+.trendUp {
+  @apply flex items-center text-emerald-500 text-sm font-medium mt-1;
+}
+
+.trendDown {
+  @apply flex items-center text-red-500 text-sm font-medium mt-1;
+}
+
+.iconContainer {
+  @apply p-2 rounded-lg;
+}

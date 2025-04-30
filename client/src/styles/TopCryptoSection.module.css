@@ -1,0 +1,62 @@
+.sectionTitle {
+  @apply text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white;
+}
+
+.viewAllLink {
+  @apply text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 font-medium flex items-center;
+  transition: transform 0.2s ease;
+}
+
+.viewAllLink:hover {
+  transform: translateX(2px);
+}
+
+.coinCard {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 dark:shadow-md crypto-glow;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coinCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.coinIcon {
+  @apply w-12 h-12 rounded-full p-2 flex items-center justify-center mr-3;
+}
+
+.coinName {
+  @apply font-bold text-gray-900 dark:text-white;
+}
+
+.coinSymbol {
+  @apply text-sm text-gray-500 dark:text-gray-400;
+}
+
+.coinRank {
+  @apply text-xs px-2 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300;
+}
+
+.coinPrice {
+  @apply text-2xl font-bold text-gray-900 dark:text-white;
+}
+
+.coinChangeUp {
+  @apply text-sm font-medium flex items-center text-emerald-500;
+}
+
+.coinChangeDown {
+  @apply text-sm font-medium flex items-center text-red-500;
+}
+
+.coinStats {
+  @apply flex justify-between text-sm border-t border-gray-100 dark:border-gray-700 pt-4;
+}
+
+.statLabel {
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+.statValue {
+  @apply font-medium text-gray-900 dark:text-white;
+}

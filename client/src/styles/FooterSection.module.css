@@ -1,0 +1,62 @@
+.logoText {
+  @apply text-xl font-bold;
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.footerContainer {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.footerInner {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+}
+
+.footerGrid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-8;
+}
+
+.footerDescription {
+  @apply text-gray-600 dark:text-gray-400 mb-4;
+}
+
+.socialLinks {
+  @apply flex space-x-4;
+}
+
+.socialIcon {
+  @apply text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.socialIcon:hover {
+  transform: translateY(-2px);
+}
+
+.footerHeading {
+  @apply text-lg font-semibold mb-4 text-gray-900 dark:text-white;
+}
+
+.footerLinks {
+  @apply space-y-2;
+}
+
+.footerLink {
+  @apply text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.footerLink:hover {
+  transform: translateX(2px);
+}
+
+.footerBottom {
+  @apply mt-12 pt-8 border-t border-gray-200 dark:border-gray-700;
+}
+
+.copyright {
+  @apply text-gray-500 dark:text-gray-400 text-center;
+}
