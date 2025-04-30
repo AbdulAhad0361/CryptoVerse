@@ -7,6 +7,10 @@ import TopCryptoSection from '@/components/TopCryptoSection';
 import MarketTrendsSection from '@/components/MarketTrendsSection';
 import FooterSection from '@/components/FooterSection';
 import Background from '@/components/ThreeJS/Background';
+import HeroSection from '@/components/HeroSection';
+import StatisticsBar from '@/components/StatisticsBar';
+import LiveNotifications from '@/components/LiveNotifications';
+import CtaSection from '@/components/CtaSection';
 
 export default function Home() {
   // Scroll animation
@@ -44,45 +48,71 @@ export default function Home() {
       
       <Navbar />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
-        <section id="overview" className="pt-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <MarketOverview />
-          </motion.div>
+      {/* Live price statistics bar */}
+      <StatisticsBar />
+      
+      {/* Live notification component */}
+      <LiveNotifications />
+      
+      <main className="flex-grow">
+        {/* Hero section */}
+        <section id="hero">
+          <HeroSection />
         </section>
         
-        <section id="markets" className="pt-16">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <ThreeJSFeature />
-          </motion.div>
-        </section>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <section id="overview" className="pt-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="scroll-fade"
+            >
+              <MarketOverview />
+            </motion.div>
+          </section>
+          
+          <section id="markets" className="pt-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="scroll-fade"
+            >
+              <ThreeJSFeature />
+            </motion.div>
+          </section>
+          
+          <section id="cryptos" className="pt-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="scroll-fade"
+            >
+              <TopCryptoSection />
+            </motion.div>
+          </section>
+          
+          <section id="trends" className="pt-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="scroll-fade"
+            >
+              <MarketTrendsSection />
+            </motion.div>
+          </section>
+        </div>
         
-        <section id="cryptos" className="pt-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          >
-            <TopCryptoSection />
-          </motion.div>
-        </section>
-        
-        <section id="trends" className="pt-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-          >
-            <MarketTrendsSection />
-          </motion.div>
+        {/* CTA Section */}
+        <section id="cta">
+          <CtaSection />
         </section>
       </main>
       
