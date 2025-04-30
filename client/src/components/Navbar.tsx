@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaChartLine, FaBars, FaMoon, FaSun, FaUser } from 'react-icons/fa';
+import { FaChartLine, FaBars, FaMoon, FaSun } from 'react-icons/fa';
 import { useThemeMode } from '@/hooks/use-theme';
 import styles from '@/styles/Navbar.module.css';
 
@@ -63,12 +63,7 @@ export default function Navbar() {
             >
               {isDark ? <FaSun className="text-lg" /> : <FaMoon className="text-lg" />}
             </button>
-            <div className="ml-3 relative">
-              <button className="bg-primary-100 dark:bg-primary-900 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary p-1">
-                <span className="sr-only">Open user menu</span>
-                <FaUser className="text-primary dark:text-primary-400 p-1" />
-              </button>
-            </div>
+
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
             <button 
@@ -112,19 +107,10 @@ export default function Navbar() {
           </button>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center px-4">
-            <div className="flex-shrink-0">
-              <div className="h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
-                <FaUser className="text-primary dark:text-primary-400" />
-              </div>
-            </div>
-            <div className="ml-3">
-              <div className="text-base font-medium text-gray-800 dark:text-white">User Account</div>
-              <div className="text-sm font-medium text-gray-500 dark:text-gray-400">user@example.com</div>
-            </div>
+          <div className="flex items-center justify-end px-4">
             <button 
               onClick={toggleTheme}
-              className="ml-auto switch-theme p-2 rounded-full text-gray-600 dark:text-gray-300 focus:outline-none"
+              className="switch-theme p-2 rounded-full text-gray-600 dark:text-gray-300 focus:outline-none"
               aria-label="Toggle theme"
             >
               {isDark ? <FaSun className="text-lg" /> : <FaMoon className="text-lg" />}
