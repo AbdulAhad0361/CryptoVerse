@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaInfoCircle } from 'react-icons/fa';
+import { FaArrowRight, FaInfoCircle, FaTimes } from 'react-icons/fa';
 import styles from '@/styles/ThreeJSFeature.module.css';
 import ModelSelector from './ThreeJS/ModelSelector';
 
@@ -64,10 +64,16 @@ const cryptoInfo = {
 
 export default function ThreeJSFeature() {
   const [activeModel, setActiveModel] = useState('bitcoin');
+  const [showInfo, setShowInfo] = useState(false);
   
   // Update active model when ModelSelector changes models
   const handleModelChange = (modelName: string) => {
     setActiveModel(modelName);
+  };
+  
+  // Toggle info display (for touch devices)
+  const toggleInfo = () => {
+    setShowInfo(prev => !prev);
   };
   
   // Get current crypto info
@@ -144,12 +150,40 @@ export default function ThreeJSFeature() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          <div className="canvas-container w-full h-full border-2 sm:border-4 border-white/30 dark:border-gray-700/30 bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-xl overflow-hidden relative">
+          <div 
+            className="canvas-container w-full h-full border-2 sm:border-4 border-white/30 dark:border-gray-700/30 bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-xl overflow-hidden relative"
+            onMouseEnter={() => setShowInfo(true)}
+            onMouseLeave={() => setShowInfo(false)}
+          >
             <ModelSelector onModelChange={handleModelChange} />
             
-            {/* Info card with static container and fixed height */}
-            <div className="absolute left-4 right-4 bottom-20 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg p-3 text-left" style={{ height: '130px' }}>
-              <h4 className="font-bold text-sm text-gray-900 dark:text-white mb-1">{currentInfo.title}</h4>
+            {/* Info toggle button - clickable for touch devices and visible when info is hidden */}
+            {!showInfo && (
+              <button 
+                onClick={toggleInfo}
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-full p-3 shadow-lg animate-pulse hover:scale-110 transition-transform cursor-pointer"
+                aria-label="Show cryptocurrency information"
+              >
+                <FaInfoCircle className="text-xl text-primary" />
+              </button>
+            )}
+            
+            {/* Info card with hover functionality */}
+            <div 
+              className={`absolute left-4 right-4 bottom-20 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg p-3 text-left transition-all duration-300 ${
+                showInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+              }`}
+            >
+              {/* Close button for touch devices */}
+              <button 
+                onClick={() => setShowInfo(false)}
+                className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                aria-label="Close information panel"
+              >
+                <FaTimes className="text-xs text-gray-500 dark:text-gray-400" />
+              </button>
+              
+              <h4 className="font-bold text-sm text-gray-900 dark:text-white mb-1 pr-6">{currentInfo.title}</h4>
               <p className="text-xs text-gray-700 dark:text-gray-300 mb-2 line-clamp-3">{currentInfo.description}</p>
               <div className="flex flex-wrap gap-1">
                 {currentInfo.features.map((feature, index) => (
