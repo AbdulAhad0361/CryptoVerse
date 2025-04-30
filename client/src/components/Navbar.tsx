@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
 import { FaChartLine, FaBars, FaMoon, FaSun, FaUser } from 'react-icons/fa';
 import { useThemeMode } from '@/hooks/use-theme';
 import styles from '@/styles/Navbar.module.css';
@@ -9,6 +8,14 @@ export default function Navbar() {
   const { isDark, toggleTheme } = useThemeMode();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav className="relative z-10 bg-white dark:bg-gray-800 shadow-sm">
@@ -22,18 +29,30 @@ export default function Navbar() {
               <span className={styles.logoText}>CryptoVerse</span>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link href="/" className="border-primary text-gray-900 dark:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              <button 
+                onClick={() => scrollToSection('overview')} 
+                className="border-primary text-gray-900 dark:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer"
+              >
                 Dashboard
-              </Link>
-              <Link href="/markets" className="border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              </button>
+              <button 
+                onClick={() => scrollToSection('markets')} 
+                className="border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer"
+              >
                 Markets
-              </Link>
-              <Link href="/portfolio" className="border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Portfolio
-              </Link>
-              <Link href="/news" className="border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                News
-              </Link>
+              </button>
+              <button 
+                onClick={() => scrollToSection('cryptos')} 
+                className="border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer"
+              >
+                Cryptocurrencies
+              </button>
+              <button 
+                onClick={() => scrollToSection('trends')} 
+                className="border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer"
+              >
+                Trends
+              </button>
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
@@ -67,18 +86,30 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div className={`sm:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="pt-2 pb-3 space-y-1">
-          <Link href="/" className="bg-primary-50 dark:bg-primary-900 border-primary text-primary-700 dark:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+          <button 
+            onClick={() => scrollToSection('overview')} 
+            className="bg-primary-50 dark:bg-primary-900 border-primary text-primary-700 dark:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium w-full text-left"
+          >
             Dashboard
-          </Link>
-          <Link href="/markets" className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+          </button>
+          <button 
+            onClick={() => scrollToSection('markets')} 
+            className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium w-full text-left"
+          >
             Markets
-          </Link>
-          <Link href="/portfolio" className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-            Portfolio
-          </Link>
-          <Link href="/news" className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-            News
-          </Link>
+          </button>
+          <button 
+            onClick={() => scrollToSection('cryptos')} 
+            className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium w-full text-left"
+          >
+            Cryptocurrencies
+          </button>
+          <button 
+            onClick={() => scrollToSection('trends')} 
+            className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium w-full text-left"
+          >
+            Trends
+          </button>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
           <div className="flex items-center px-4">
