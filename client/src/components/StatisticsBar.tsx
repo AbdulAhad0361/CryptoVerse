@@ -42,11 +42,19 @@ export default function StatisticsBar() {
     };
     
     // Set an interval to scroll every 30ms for smooth scrolling
-    const scrollInterval = setInterval(scroll, 30);
+    let scrollInterval = setInterval(scroll, 30);
     
     // Pause scrolling when hovering
-    const pauseScroll = () => clearInterval(scrollInterval);
-    const resumeScroll = () => clearInterval(scrollInterval);
+    const pauseScroll = () => {
+      clearInterval(scrollInterval);
+    };
+    
+    const resumeScroll = () => {
+      // Clear any existing interval first
+      clearInterval(scrollInterval);
+      // Create a new interval
+      scrollInterval = setInterval(scroll, 30);
+    };
     
     scrollElement.addEventListener('mouseenter', pauseScroll);
     scrollElement.addEventListener('mouseleave', resumeScroll);
