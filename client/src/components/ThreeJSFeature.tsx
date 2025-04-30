@@ -161,14 +161,14 @@ export default function ThreeJSFeature() {
           <div className="canvas-container w-full h-full border-2 sm:border-4 border-white/30 dark:border-gray-700/30 bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-xl overflow-hidden relative">
             <ModelSelector onModelChange={handleModelChange} />
             
-            {/* Info card for current crypto */}
-            <AnimatePresence>
-              {showInfo && (
+            {/* Info card for current crypto - with fixed positioning to prevent layout shifts */}
+            <div className="absolute left-4 right-4 bottom-20 z-10" style={{ minHeight: '110px' }}>
+              <AnimatePresence mode="wait">
                 <motion.div 
-                  className="absolute left-4 right-4 bottom-20 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg p-3 text-left z-10"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
+                  key={activeModel} // This ensures different content for each model
+                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg p-3 text-left"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: showInfo ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   <h4 className="font-bold text-sm text-gray-900 dark:text-white mb-1">{currentInfo.title}</h4>
@@ -184,8 +184,8 @@ export default function ThreeJSFeature() {
                     ))}
                   </div>
                 </motion.div>
-              )}
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
           </div>
         </motion.div>
       </div>
