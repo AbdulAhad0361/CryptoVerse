@@ -152,56 +152,137 @@ export default function HeroSection() {
               />
             </motion.p>
           
-            {/* Feature tabs */}
-            <div className="space-y-4 pt-4">
-              <div className="flex space-x-2 border-b border-gray-200 dark:border-gray-700">
+            {/* Feature tabs - Enhanced with modern design */}
+            <motion.div 
+              className="space-y-5 pt-5 relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              {/* Tab highlight background */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-50/50 via-indigo-50/50 to-purple-50/50 dark:from-blue-900/10 dark:via-indigo-900/10 dark:to-purple-900/10 rounded-2xl -z-10 blur-sm"></div>
+              
+              <div className="flex flex-wrap gap-2 border-b border-gray-200 dark:border-gray-700 relative">
+                {/* Animated indicator */}
+                <motion.div 
+                  className="absolute bottom-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-500 rounded-full"
+                  animate={{ 
+                    left: `${activeTab * 33.33}%`, 
+                    width: '25%',
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+                
                 {tabContent.map((tab, index) => (
-                  <button
+                  <motion.button
                     key={index}
                     onClick={() => setActiveTab(index)}
-                    className={`px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                    className={`relative px-5 py-3 text-sm font-medium rounded-t-lg transition-all duration-200 overflow-hidden ${
                       activeTab === index
-                        ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
-                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                        ? 'text-blue-600 dark:text-blue-400'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300'
                     }`}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ y: 0 }}
                   >
-                    Feature {index + 1}
-                  </button>
+                    {/* Tab background glow on active */}
+                    {activeTab === index && (
+                      <motion.div 
+                        className="absolute inset-0 bg-blue-100/30 dark:bg-blue-900/20 -z-10 rounded-t-lg"
+                        layoutId="activeTabBackground"
+                        initial={false}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    
+                    <span className="relative z-10 flex items-center">
+                      {/* Small icon by feature number */}
+                      <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full mr-1.5 text-xs
+                        ${activeTab === index 
+                          ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400' 
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'
+                        }`}>
+                        {index + 1}
+                      </span>
+                      Feature {index + 1}
+                    </span>
+                  </motion.button>
                 ))}
               </div>
-              <div className="py-4">
+              
+              {/* Tab content with enhanced animations */}
+              <div className="p-4 bg-white/70 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-gray-700/50 shadow-sm">
                 <motion.div
                   key={activeTab}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-2"
+                  transition={{ duration: 0.4, type: "spring" }}
+                  className="space-y-3"
                 >
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
+                    <span className="inline-block w-8 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-500 rounded-full mr-2"></span>
                     {tabContent[activeTab].title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-gray-600 dark:text-gray-300 pl-10 border-l-2 border-gray-100 dark:border-gray-700">
                     {tabContent[activeTab].description}
                   </p>
                 </motion.div>
               </div>
-            </div>
+            </motion.div>
           
-            {/* CTA buttons */}
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+            {/* Enhanced CTA buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 pt-6 relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+            >
+              {/* Decorative elements for CTA section */}
+              <div className="absolute -left-4 -bottom-4 w-24 h-24 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-xl -z-10"></div>
+              <div className="absolute right-10 top-0 w-20 h-20 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-lg -z-10"></div>
+              
               <motion.button
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform transition hover:-translate-y-0.5"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group relative inline-flex items-center justify-center px-6 py-4 overflow-hidden border-0 text-base font-medium rounded-xl text-white shadow-lg"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                Explore Markets
-                <FaArrowRight className="ml-2" />
+                {/* Button gradient background with animated shine effect */}
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700"></span>
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r from-transparent via-white to-transparent skew-x-[-15deg]"
+                  style={{ 
+                    transform: 'translateX(-100%)', 
+                    animation: 'shine 1.5s infinite' 
+                  }}></span>
+                
+                {/* Button content with animated arrow */}
+                <span className="relative flex items-center">
+                  <span className="mr-2">Explore Markets</span>
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  >
+                    <FaArrowRight />
+                  </motion.span>
+                </span>
               </motion.button>
-              <button className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-lg text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm transition hover:shadow">
-                View Documentation
-              </button>
-            </div>
+              
+              <motion.button 
+                className="group relative inline-flex items-center justify-center px-6 py-4 border border-gray-200 dark:border-gray-700 text-base font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 shadow-sm overflow-hidden"
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Subtle gradient background */}
+                <span className="absolute inset-0 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 opacity-50"></span>
+                
+                {/* Hover effect border */}
+                <span className="absolute inset-0 border border-blue-200 dark:border-blue-800 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity"></span>
+                
+                <span className="relative flex items-center">
+                  View Documentation
+                </span>
+              </motion.button>
+            </motion.div>
           </div>
           
           {/* Right column - statistics */}
