@@ -163,15 +163,7 @@ export default function HeroSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-50/50 via-indigo-50/50 to-purple-50/50 dark:from-blue-900/10 dark:via-indigo-900/10 dark:to-purple-900/10 rounded-2xl -z-10 blur-sm"></div>
               
               <div className="flex flex-wrap gap-2 border-b border-gray-200 dark:border-gray-700 relative">
-                {/* Animated indicator */}
-                <motion.div 
-                  className="absolute bottom-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-500 rounded-full"
-                  animate={{ 
-                    left: `${activeTab * 33.33}%`, 
-                    width: '25%',
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
+                {/* Active tab marker - instead of animated underline */}
                 
                 {tabContent.map((tab, index) => (
                   <motion.button
@@ -179,8 +171,8 @@ export default function HeroSection() {
                     onClick={() => setActiveTab(index)}
                     className={`relative px-5 py-3 text-sm font-medium rounded-t-lg transition-all duration-200 overflow-hidden ${
                       activeTab === index
-                        ? 'text-blue-600 dark:text-blue-400'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300'
+                        ? 'text-blue-600 dark:text-blue-400 border-b-[3px] border-blue-500 dark:border-blue-400'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 border-b-[3px] border-transparent'
                     }`}
                     whileHover={{ y: -2 }}
                     whileTap={{ y: 0 }}
