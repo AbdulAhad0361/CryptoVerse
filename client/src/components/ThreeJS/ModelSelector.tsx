@@ -6,11 +6,14 @@ import SolanaModel from './SolanaModel';
 import RippleModel from './RippleModel';
 import CardanoModel from './CardanoModel';
 import PolkadotModel from './PolkadotModel';
+import DogecoinModel from './DogecoinModel';
+import BinanceModel from './BinanceModel';
+import ChainlinkModel from './ChainlinkModel';
 import ParticleBackground from './ParticleBackground';
 import { FaBitcoin, FaEthereum } from 'react-icons/fa';
-import { SiSolana, SiXrp, SiCardano, SiPolkadot } from 'react-icons/si';
+import { SiSolana, SiXrp, SiCardano, SiPolkadot, SiDogecoin, SiBinance, SiChainlink } from 'react-icons/si';
 
-type CryptoModel = 'bitcoin' | 'ethereum' | 'solana' | 'ripple' | 'cardano' | 'polkadot';
+type CryptoModel = 'bitcoin' | 'ethereum' | 'solana' | 'ripple' | 'cardano' | 'polkadot' | 'dogecoin' | 'binance' | 'chainlink';
 
 interface ModelSelectorProps {
   onModelChange?: (modelName: string) => void;
@@ -41,6 +44,12 @@ export default function ModelSelector({ onModelChange }: ModelSelectorProps) {
         return '#0033AD'; // Cardano blue
       case 'polkadot':
         return '#E6007A'; // Polkadot pink
+      case 'dogecoin':
+        return '#c2a633'; // Dogecoin gold
+      case 'binance':
+        return '#f3ba2f'; // Binance yellow
+      case 'chainlink':
+        return '#375bd2'; // Chainlink blue
       default:
         return '#6366F1'; // Indigo
     }
@@ -61,6 +70,12 @@ export default function ModelSelector({ onModelChange }: ModelSelectorProps) {
         return <CardanoModel />;
       case 'polkadot':
         return <PolkadotModel />;
+      case 'dogecoin':
+        return <DogecoinModel />;
+      case 'binance':
+        return <BinanceModel />;
+      case 'chainlink':
+        return <ChainlinkModel />;
       default:
         return <CoinModel />;
     }
@@ -81,6 +96,12 @@ export default function ModelSelector({ onModelChange }: ModelSelectorProps) {
         return 'Cardano (ADA)';
       case 'polkadot':
         return 'Polkadot (DOT)';
+      case 'dogecoin':
+        return 'Dogecoin (DOGE)';
+      case 'binance':
+        return 'Binance Coin (BNB)';
+      case 'chainlink':
+        return 'Chainlink (LINK)';
       default:
         return 'Unknown';
     }
@@ -196,6 +217,51 @@ export default function ModelSelector({ onModelChange }: ModelSelectorProps) {
               aria-label="Show Polkadot Model"
             >
               <SiPolkadot className={`text-lg ${activeModel === 'polkadot' ? 'text-white' : 'text-pink-600 dark:text-pink-400'}`} />
+            </motion.button>
+          </div>
+          
+          {/* Third row of buttons (new cryptocurrencies) */}
+          <div className="flex justify-center space-x-2 mt-2">
+            <motion.button
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveModel('dogecoin')}
+              className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg ${
+                activeModel === 'dogecoin' 
+                  ? 'bg-yellow-600 text-white' 
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+              }`}
+              aria-label="Show Dogecoin Model"
+            >
+              <SiDogecoin className={`text-lg ${activeModel === 'dogecoin' ? 'text-white' : 'text-yellow-600 dark:text-yellow-500'}`} />
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveModel('binance')}
+              className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg ${
+                activeModel === 'binance' 
+                  ? 'bg-yellow-500 text-white' 
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+              }`}
+              aria-label="Show Binance Coin Model"
+            >
+              <SiBinance className={`text-lg ${activeModel === 'binance' ? 'text-white' : 'text-yellow-500 dark:text-yellow-400'}`} />
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveModel('chainlink')}
+              className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg ${
+                activeModel === 'chainlink' 
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+              }`}
+              aria-label="Show Chainlink Model"
+            >
+              <SiChainlink className={`text-lg ${activeModel === 'chainlink' ? 'text-white' : 'text-blue-500 dark:text-blue-400'}`} />
             </motion.button>
           </div>
         </div>
